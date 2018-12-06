@@ -4,7 +4,7 @@
     $acceptFileTypes = array('image/png', 'image/jpeg', 'image/jpg'); // типы принимаемых файлов
     $uploadPath = __DIR__ . '/upload/'; //дирректория загрузки файлов
     $i=0;
-    //цикл с проверкой всех условий 
+
 
     if (!is_dir($uploadPath))
         mkdir($uploadPath, 0755);
@@ -16,7 +16,7 @@
         echo json_encode($notification);
         die;
     } 
-
+        //цикл с проверкой всех условий 
     foreach ($_FILES['files']['name'] as $index => $value) { 
         if ($index == $downloadFilesLimit){
             $notification['style'][$i] = 'error';
