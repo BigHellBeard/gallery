@@ -1,16 +1,18 @@
 // функция генерирующа html код отображения загруженных файлов 
 function galleryLayout (data){
-    $.each(data.fileName, function(i,value){
-        $('#output').append(
-            $('<div>', {class: "layout"}).append(
-                $('<img>',{src: '/upload/'+value}),$('<div>', {class: "info"}).append(
-                    $('<input>',{type: "checkbox", name: "delete[]", value: value}),
-                    $('<p>').append(data.fileSize[i]),
-                    $('<p>').append(data.fileDate[i])
-                )
-            )
-        );
-    })    
+	if (data != null) {
+    	$.each(data.fileName, function(i,value){
+        	$('#output').append(
+            	$('<div>', {class: "layout"}).append(
+                	$('<img>',{src: '/upload/'+value}),$('<div>', {class: "info"}).append(
+                    	$('<input>',{type: "checkbox", name: "delete[]", value: value}),
+                    	$('<p>').append(data.fileSize[i]),
+                    	$('<p>').append(data.fileDate[i])
+                	)
+            	)
+        	);
+    	})
+    }    
 }
 
 function updateContent() {
