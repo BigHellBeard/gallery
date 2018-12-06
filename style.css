@@ -1,0 +1,38 @@
+img {
+	max-width: 200px;
+}
+
+input {
+	display: inline-block;
+}
+
+.info {
+	display: inline-block;
+	margin-left: 15px;
+	margin-right: 15px;
+	vertical-align: top;
+}
+
+.layout {
+	box-sizing: border-box;
+	display: inline-block;
+	border: 2px solid gray;
+	margin: 15px 15px 15px;
+	padding: 5px 5px;
+	vertical-align: top;
+}
+
+.success {
+	color: green;
+}
+
+.error {
+	color: red;
+}
+
+#upload-notfication {
+	display: inline-block;
+	width: 600px;
+	height: 150px;
+	overflow: auto;
+}
