@@ -1,18 +1,16 @@
 // функция генерирующа html код отображения загруженных файлов 
 function galleryLayout (data){
-	if (data != null) {
-    	$.each(data.fileName, function(i,value){
-        	$('#output').append(
-            	$('<div>', {class: "layout"}).append(
-                	$('<img>',{src: '/upload/'+value}),$('<div>', {class: "info"}).append(
-                    	$('<input>',{type: "checkbox", name: "delete[]", value: value}),
-                    	$('<p>').append(data.fileSize[i]),
-                    	$('<p>').append(data.fileDate[i])
-                	)
-            	)
-        	);
-    	})
-    }    
+    $.each(data.fileName, function(i,value){
+       	$('#output').append(
+           	$('<div>', {class: "layout"}).append(
+               	$('<img>',{src: '/upload/'+value}),$('<div>', {class: "info"}).append(
+                   	$('<input>',{type: "checkbox", name: "delete[]", value: value}),
+                   	$('<p>').append(data.fileSize[i]),
+                   	$('<p>').append(data.fileDate[i])
+               	)
+           	)
+       	);
+    })    
 }
 
 function updateContent() {
@@ -22,7 +20,9 @@ function updateContent() {
         dataType: 'json',
         success: function(data){
         	$( '.layout' ).remove();
-            galleryLayout (data);
+        	if (data != null) {
+            	galleryLayout (data);
+            }
         }
     }); 
 }
