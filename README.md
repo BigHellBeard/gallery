@@ -1,0 +1,1 @@
+Simple gallery with Qquery AJAX requests 
