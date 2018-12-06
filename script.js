@@ -16,7 +16,7 @@ function galleryLayout (data){
 function updateContent() {
 	    $.ajax({
         method: 'POST',
-        url: 'download.php',
+        url: 'file_list.php',
         dataType: 'json',
         success: function(data){
         	$( '.layout' ).remove();
@@ -50,7 +50,7 @@ $(function() {
     $('#delete_form').on('submit',function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'delete.php',
+            url: 'remove.php',
             method: 'POST',
             data: new FormData(this),
             contentType: false,
