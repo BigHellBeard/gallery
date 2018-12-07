@@ -1,10 +1,10 @@
 // функция генерирующа html код отображения загруженных файлов 
-function galleryLayout (data){
-    $.each(data.fileName, function(i,value){
+function galleryLayout(data) {
+    $.each(data.fileName, function(i, value) {
        	$('#output').append(
-           	$('<div>', {class: "layout"}).append(
-               	$('<img>',{src: '/upload/'+value}),$('<div>', {class: "info"}).append(
-                   	$('<input>',{type: "checkbox", name: "delete[]", value: value}),
+           	$('<div>', {class: 'layout'}).append(
+               	$('<img>', {src: '/upload/' + value}), $('<div>', {class: 'info'}).append(
+                   	$('<input>', {type: 'checkbox', name: 'delete[]', value: value}),
                    	$('<p>').append(data.fileSize[i]),
                    	$('<p>').append(data.fileDate[i])
                	)
@@ -18,8 +18,8 @@ function updateContent() {
         method: 'POST',
         url: 'file_list.php',
         dataType: 'json',
-        success: function(data){
-        	$( '.layout' ).remove();
+        success: function(data) {
+        	$('.layout').remove();
         	if (data != null) {
             	galleryLayout (data);
             }
@@ -30,7 +30,7 @@ function updateContent() {
 
 $(function() {
 	updateContent();
-	$('#upload_form').on('submit',function(e) {
+	$('#upload_form').on('submit', function(e) {
 	 	e.preventDefault();
 	 	$.ajax({
 	 		url: 'upload.php',
@@ -39,17 +39,16 @@ $(function() {
 	 		contentType: false,
 	 		processData: false,
 	 		dataType: 'json',
-			success: function(data){
-			    $.each(data.msg, function(i,value){
-	 			    $('#upload-notfication').prepend($('<p>',{class: data.style[i]}).append(value));
+			success: function(data) {
+			    $.each(data.msg, function(i, value) {
+	 			    $('#upload-notfication').prepend($('<p>', {class: data.style[i]}).append(value));
 	 		    });
 	 		    updateContent();
 	 	    }
 	 	});
 	});
-    // ajax запрос для первичной загрузки файлов 
-// ajax запрос на удаление выделенных файлов, после удаления обновляет содержимое
-    $('#delete_form').on('submit',function(e) {
+	// ajax запрос на удаление выделенных файлов, после удаления обновляет содержимое
+    $('#delete_form').on('submit', function(e) {
         e.preventDefault();
         $.ajax({
             url: 'remove.php',
@@ -62,4 +61,3 @@ $(function() {
         updateContent();
     });
 });
-
