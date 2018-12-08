@@ -17,6 +17,7 @@ function updateContent() {
 	    $.ajax({
         method: 'POST',
         url: 'file_list.php',
+        cache: false,
         dataType: 'json',
         success: function(data) {
         	$('.layout').remove();
@@ -38,6 +39,7 @@ $(function() {
 	 		data: new FormData(this),
 	 		contentType: false,
 	 		processData: false,
+	 		cache: false,
 	 		dataType: 'json',
 			success: function(data) {
 			    $.each(data.msg, function(i, value) {
@@ -56,6 +58,7 @@ $(function() {
             data: new FormData(this),
             contentType: false,
             processData: false,
+            cache: false,
             dataType: 'json',
         });
         updateContent();

@@ -1,1 +1,1 @@
-Simple gallery with Qquery AJAX requests 
+Simple gallery with Jquery AJAX requests 
