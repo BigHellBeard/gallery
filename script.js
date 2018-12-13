@@ -1,12 +1,12 @@
 // функция генерирующа html код отображения загруженных файлов 
 function galleryLayout(data) {
-    $.each(data.fileName, function(i, value) {
+    $.each(data, function(i, array) {
        	$('#output').append(
            	$('<div>', {class: 'layout'}).append(
-               	$('<img>', {src: '/upload/' + value}), $('<div>', {class: 'info'}).append(
-                   	$('<input>', {type: 'checkbox', name: 'delete[]', value: value}),
-                   	$('<p>').append(data.fileSize[i]),
-                   	$('<p>').append(data.fileDate[i])
+               	$('<img>', {src: '/upload/' + array.name}), $('<div>', {class: 'info'}).append(
+                   	$('<input>', {type: 'checkbox', name: 'delete[]', value: array.name}),
+                   	$('<p>').append(array.size),
+                   	$('<p>').append(array.date),
                	)
            	)
        	);
@@ -42,8 +42,8 @@ $(function() {
 	 		cache: false,
 	 		dataType: 'json',
 			success: function(data) {
-			    $.each(data.msg, function(i, value) {
-	 			    $('#upload-notfication').prepend($('<p>', {class: data.style[i]}).append(value));
+			    $.each(data, function(i, array) {
+	 			    $('#upload-notfication').prepend($('<p>', {class: array.style}).append(array.msg));
 	 		    });
 	 		    updateContent();
 	 	    }

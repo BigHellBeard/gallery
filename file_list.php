@@ -12,15 +12,18 @@ function fileSizeScale ($value) {
 	}
 }
 
+$files = [];
 if ($handle = opendir(UPLOAD_PATH)) {
-	for ($i = 0; false !== $entry = readdir($handle); $i++) { 
-        if (is_file(UPLOAD_PATH . $entry)) {
-        	$file['fileName'][$i] = $entry;
-        	$file['fileSize'][$i] = fileSizeScale(filesize(UPLOAD_PATH . $entry));
-        	$file['fileDate'][$i] = date("d.m.Y H:i:s",filemtime(UPLOAD_PATH . $entry));
-        	
+	while ($entry = readdir($handle)) {
+        if (!is_file(UPLOAD_PATH . $entry)) {
+        	continue;
         }
+		$files[] = [
+    		'name' => $entry,
+    		'size' => fileSizeScale(filesize(UPLOAD_PATH . $entry)),
+    		'date' => date("d.m.Y H:i:s", filemtime(UPLOAD_PATH . $entry)),
+		];
 	}
 	closedir($handle);
 } // отправка json массива
-echo json_encode($file);
+echo json_encode($files);
